@@ -1,24 +1,22 @@
-let step = 0;
+function getPalindrome(num, step = 0) {
+  const reverseNumber = reverse(num);
 
-function getPalindrome(num) {
-  const obj = {
-    result: num,
-    step
-  };
-  if(num == reverse(num)){
-    return console.log(obj);
+  if(num === reverseNumber){
+    return {
+      result: num,
+      step
+    };
   } else {
-    num += +reverse(num);
-    step++;
-    getPalindrome(num);
+    num += reverseNumber;
+    return getPalindrome(num, ++step);
   }
 }
 
 function reverse(num) {
   let str = String(num);
-  return str.split("").reverse().join("");
+  return +str.split("").reverse().join("");
 }
 
 getPalindrome(11); // 0
 getPalindrome(312); // 1
-getPalindrome(96); // 4
+console.log(getPalindrome(89)); // 4
